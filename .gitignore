@@ -1,0 +1,26 @@
+# Entornos virtuales y cachés de Python
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de Streamlit
+.streamlit/
+
+# Archivos de datos locales (no subir tu diario personal)
+diario_emocional.csv
+*.csv
+
+# Archivos del sistema
+Thumbs.db
+.DS_Store
+
+# Tokens y secretos (¡importante!)
+*.txt
+.env
+
+# Archivos de logs
+*.log
+logs/
