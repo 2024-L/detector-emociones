@@ -1,0 +1,18 @@
+# Entornos virtuales y caches de Python 
+.venv/ 
+venv/ 
+env/ 
+__pycache__/ 
+*.pyc 
+*.pyo 
+# Modelos entrenados (pesan mas de 100 MB) 
+models/ 
+# Diario personal (privado) 
+data/diario_emocional.csv 
+# Secrets de Streamlit (el tema SI se sube) 
+.streamlit/secrets.toml 
+# Sistema y otros 
+Thumbs.db 
+.DS_Store 
+.env 
+*.log 
