@@ -1,17 +1,26 @@
+import os
 from pathlib import Path
 
-# Modelo original (solo lectura)
-MODELO_ORIGINAL_PATH = Path(r"D:/Proyectos Nuevos/Modelación/modelo_emociones_balanceado")
+# 1) Modelo en Hugging Face (siempre disponible en internet)
+MODELO_HF = "Lino2026/detector-emociones-v2"
 
-# Modelo v2 (entrenado con refuerzo de esperanza)
-MODELO_V2_PATH = Path(__file__).parent / "models" / "v2"
+# 2) Modelo v2 local (entrenado en esta computadora)
+MODELO_V2_LOCAL = Path(__file__).parent / "models" / "v2"
 
-# Por defecto usamos el v2
-MODEL_PATH = MODELO_V2_PATH if MODELO_V2_PATH.exists() else MODELO_ORIGINAL_PATH
+# 3) Modelo original (proyecto viejo, como respaldo)
+RUTA_ORIGINAL = os.getenv(
+    "RUTA_MODELO",
+    r"D:/Proyectos Nuevos/Modelación/modelo_emociones_balanceado",
+)
 
-# Carpeta data del proyecto nuevo
+# Prioridad: nube > local > original
+if MODELO_V2_LOCAL.exists() and (MODELO_V2_LOCAL / "config.json").exists():
+    MODEL_PATH = MODELO_V2_LOCAL
+else:
+    MODEL_PATH = MODELO_HF
+
+# Datos del proyecto
 DATA_DIR = Path(__file__).parent / "data"
 DATA_DIR.mkdir(exist_ok=True)
-
-# Archivo de historial del proyecto nuevo
 HISTORIAL_CSV = DATA_DIR / "diario_emocional.csv"
+FEEDBACK_CSV = DATA_DIR / "feedback.csv"
